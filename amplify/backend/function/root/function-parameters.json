@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "auth": {
+      "amplifyapp": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

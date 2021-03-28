@@ -1,0 +1,48 @@
+{
+  "auth": {
+    "amplifyapp": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  },
+  "function": {
+    "root": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "amplifyapp",
+          "attributes": [
+            "UserPoolId"
+          ]
+        }
+      ]
+    }
+  },
+  "api": {
+    "amplifyrest": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "root",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    }
+  },
+  "analytics": {
+    "amplifyapp": {
+      "service": "Pinpoint",
+      "providerPlugin": "awscloudformation"
+    }
+  }
+}
